@@ -2,12 +2,12 @@ const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("disc
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("limpar")
+    .setName("clear")
     .setDescription("Limpar o número de mensagens de um usuário específico ou de um canal")
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .addIntegerOption((option) =>
       option
-        .setName("quantidade")
+        .setName("amount")
         .setDescription("Quantidade de mensagens para limpar")
         .setMinValue(1)
         .setMaxValue(100)
@@ -15,7 +15,7 @@ module.exports = {
     )
     .addUserOption((option) =>
       option
-        .setName("usuario")
+        .setName("user")
         .setDescription("Selecione um usuário para excluir as mensagens dele")
         .setRequired(false)
     ),
@@ -23,8 +23,8 @@ module.exports = {
   async execute(interaction) {
     const { channel, options } = interaction;
 
-    const amount = options.getInteger("quantidade");
-    const target = options.getUser("usuario");
+    const amount = options.getInteger("amount");
+    const target = options.getUser("user");
 
     if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages))
       return await interaction.reply({
@@ -63,14 +63,14 @@ module.exports = {
 
       await channel.bulkDelete(filtered).then((messages) => {
         resEmbed.setDescription(
-          `✅ ${interaction.user} deletou **${messages.size}** mensagens de ${target}.`
+          `✅ ${interaction.user} deletou **${messages.size}** mensagens de ${target} neste canal.`
         );
         interaction.reply({ embeds: [resEmbed] });
       });
     } else {
       await channel.bulkDelete(amount, true).then((messages) => {
         resEmbed.setDescription(
-          `✅ ${interaction.user} deletou **${messages.size}** mensagens deste canal! ${channel}.`
+          `✅ ${interaction.user} deletou **${messages.size}** mensagens do canal: ${channel}.`
         );
         interaction.reply({ embeds: [resEmbed] });
       });

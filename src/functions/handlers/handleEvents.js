@@ -1,7 +1,9 @@
 const fs = require("fs");
 
 module.exports = (client) => {
-  client.handleEvents = () => {
+  client.handleEvents = async () => {
+    await client.events.clear();
+
     const eventFolders = fs.readdirSync("./src/events");
 
     for (const folder of eventFolders) {
@@ -24,9 +26,8 @@ module.exports = (client) => {
           if (event.once) client.once(event.name, execute);
           else client.on(event.name, execute);
         }
-
-        return console.log("✅ Loaded Events");
       }
     }
+    console.log("✅ Loaded Events");
   };
 };

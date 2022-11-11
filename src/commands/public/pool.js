@@ -8,7 +8,7 @@ const {
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("enquete")
+    .setName("pool")
     .setDescription(`Cria uma enquete`)
     .addIntegerOption((option) =>
       option
