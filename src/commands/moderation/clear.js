@@ -10,7 +10,7 @@ module.exports = {
         .setName("amount")
         .setDescription("Quantidade de mensagens para limpar")
         .setMinValue(1)
-        .setMaxValue(100)
+        .setMaxValue(99)
         .setRequired(true)
     )
     .addUserOption((option) =>

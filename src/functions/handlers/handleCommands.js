@@ -5,8 +5,6 @@ const fs = require("fs");
 
 module.exports = (client) => {
   client.handleCommands = async () => {
-    await client.commands.clear();
-
     let commandArray = [];
 
     const commandFolders = fs.readdirSync(`./src/commands`);
@@ -18,8 +16,12 @@ module.exports = (client) => {
 
       for (const file of commandFiles) {
         const command = require(`../../commands/${folder}/${file}`);
-        client.commands.set(command.data.name, command);
+
+        const properties = { folder, ...command };
+
+        client.commands.set(command.data.name, properties);
         commandArray.push(command.data.toJSON());
+
         console.log(`✅ Command ${command.data.name} has been passed through`);
       }
     }

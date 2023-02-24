@@ -3,7 +3,7 @@ const { Client, SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = requi
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("unmute")
-    .setDescription("Unmute a member from the guild")
+    .setDescription("Desmute um membro do server.")
     .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
     .addUserOption((option) =>
       option

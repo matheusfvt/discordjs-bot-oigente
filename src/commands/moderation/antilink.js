@@ -11,7 +11,7 @@ const dbAntilinkSpecific = new QuickDB();
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("antilink")
-    .setDescription("Ativar ou desativar o sistema de antilink de um canal.")
+    .setDescription("Ativar ou desativar o sistema de antilink de um canal")
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommandGroup((subcommand) =>
       subcommand
